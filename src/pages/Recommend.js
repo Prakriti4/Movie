@@ -24,6 +24,7 @@ const Recommend = () => {
 
     const fetchData = async (movie) => {
         try {
+            setLoading(true);
             const response = await fetch(process.env.REACT_APP_BASE_URL + "recommend" + `?name=${movie}`);
             const result = await response.json();
             setData(result.data);
@@ -54,7 +55,7 @@ const Recommend = () => {
                             <h1 className='mt-3 text-3xl text-center text-slate-400 font-semibold'>Top 5 Recommend Movies</h1>
                         </div>
 
-                        <div className="mt-5 grid grid-cols-5 gap-5">
+                        <div className="mt-5 grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-5">
                             {
                                 data?.map((movie, index) =>
                                     <Card key={index} movie={movie} />
